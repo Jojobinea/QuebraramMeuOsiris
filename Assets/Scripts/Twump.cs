@@ -7,6 +7,7 @@ public class Twump : MonoBehaviour
     [SerializeField] private Transform spriteRoot;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private Sprite _awakenSprite;
+    [SerializeField] private ParticleSystem _particleSystem;
 
     [Header("Player Detection Ray")]
     [SerializeField] private float detectionRange = 3f;
@@ -140,6 +141,7 @@ public class Twump : MonoBehaviour
         _rb.bodyType = RigidbodyType2D.Dynamic;
         _rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;
         _spriteRenderer.sprite = _awakenSprite;
+        _particleSystem.Play();
         Debug.Log("[Twump] Dropping");
     }
 }
