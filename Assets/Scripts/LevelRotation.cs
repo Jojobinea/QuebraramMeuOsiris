@@ -93,6 +93,7 @@ public class MapRotator : MonoBehaviour
             playerRb.constraints = oldConstraints;
 
         _isRotating = false;
+        EventManager.TriggerEvent("EndRotation");
     }
 
     private static float RoundToRightAngle(float z)
