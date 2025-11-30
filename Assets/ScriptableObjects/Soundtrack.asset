@@ -23,3 +23,21 @@ MonoBehaviour:
   - name: finalboss
     clip: {fileID: 8300000, guid: 1d95b7b6925c8234d9f8edb9656b98da, type: 3}
     mixerGroup: Music
+  - name: GoldenUrn
+    clip: {fileID: 8300000, guid: 0628581f73e895c418da2c59f80145c3, type: 3}
+    mixerGroup: SFX
+  - name: BoxHitGround
+    clip: {fileID: 8300000, guid: 95541e02e40a4c04f985c8f0d0bc0a0b, type: 3}
+    mixerGroup: SFX
+  - name: SarcofagoHitGround
+    clip: {fileID: 8300000, guid: f86a52cb6635b0541ba04318b841edc4, type: 3}
+    mixerGroup: SFX
+  - name: SarcofagoAlert
+    clip: {fileID: 8300000, guid: cf63331bc2d3bd746bff5beeb7ef99f8, type: 3}
+    mixerGroup: SFX
+  - name: BoxBreak
+    clip: {fileID: 8300000, guid: 3aa03570baf9b2d4c9711674a17f5759, type: 3}
+    mixerGroup: SFX
+  - name: PlayerHit
+    clip: {fileID: 8300000, guid: 317067c02a3dc1a4a92b6f1a1b8afedd, type: 3}
+    mixerGroup: SFX

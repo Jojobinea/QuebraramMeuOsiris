@@ -7,9 +7,9 @@ public class LevelChoiceController : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            if(SceneManager.GetActiveScene().name != "MenuScene")
+            if(SceneManager.GetActiveScene().name != "Menu")
             {
-                SceneManager.LoadScene("MenuScene");
+                SceneManager.LoadScene("Menu");
             }
         }
     }

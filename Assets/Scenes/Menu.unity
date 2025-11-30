@@ -868,6 +868,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AudioSystem
       objectReference: {fileID: 0}
+    - target: {fileID: 4310450093405476667, guid: 4f2f012f19c48f54f86577ac26cbd291, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9076081385052695978, guid: 4f2f012f19c48f54f86577ac26cbd291, type: 3}
       propertyPath: _audioMixer
       value: 

@@ -75,7 +75,11 @@ public class Twump : MonoBehaviour
             Destroy(collision.collider.gameObject);
 
         if (!_isStuck && IsGroundCollision(collision))
+        {
+            AudioSystem.Instance.PlaySFX("SarcofagoHitGround");
             StickToGround();
+        }
+            
     }
 
     private void OnCollisionStay2D(Collision2D collision)
@@ -143,6 +147,7 @@ public class Twump : MonoBehaviour
     {
         if (_armed) return;
 
+        AudioSystem.Instance.PlaySFX("SarcofagoAlert");
         _armed = true;
         _rb.bodyType = RigidbodyType2D.Dynamic;
         _rb.constraints = RigidbodyConstraints2D.FreezeRotation | RigidbodyConstraints2D.FreezePositionX;

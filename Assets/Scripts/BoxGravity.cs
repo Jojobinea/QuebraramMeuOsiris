@@ -37,6 +37,7 @@ public class BoxGravity : MonoBehaviour
             {
                 Debug.Log($"{name} parou de cair, snapando no grid");
                 SnapToGrid();
+                AudioSystem.Instance.PlaySFX("BoxHitGround");
             }
             isFalling = false;
             smashCollider.enabled = true;
