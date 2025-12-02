@@ -14,6 +14,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool flipSprite = true;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Animator animator; // opcional (bool "Climbing", bool "Walk")
+    [SerializeField] private GameObject _dust;
 
     [Header("Escada")]
     [SerializeField] private string ladderTag = "Ladder";
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
 
         originalGravity = rb.gravityScale;
 
+        _dust.SetActive(false);
         EventManager.AddListener("StartRotation", OnLevelRotation);
     }
 
@@ -79,9 +81,25 @@ public class PlayerMovement : MonoBehaviour
         // --- Atualiza animações ---
         if (animator)
         {
-            bool isWalking = grounded && Mathf.Abs(x) > 0.01f && !climbing;
+            bool isWalking = Mathf.Abs(x) > 0.01f && !climbing;
             animator.SetBool("Walk", isWalking);
             animator.SetBool("Climbing", climbing && Mathf.Abs(inputY) > 0.01f);
+        }
+
+        if (_dust)
+        {
+            bool movingHoriz = Mathf.Abs(input.x) > 0.01f;
+
+            if (grounded && movingHoriz && !climbing)
+            {
+                if (!_dust.activeSelf)
+                    _dust.SetActive(true);
+            }
+            else
+            {
+                if (_dust.activeSelf)
+                    _dust.SetActive(false);
+            }
         }
     }
 
