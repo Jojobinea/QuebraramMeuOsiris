@@ -189,7 +189,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7344719401958051387}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -317,7 +317,7 @@ MonoBehaviour:
   smashCollider: {fileID: 3030897277960969920}
   boxSize: {x: 3, y: 1}
   pivotOffset: {x: -1, y: 0, z: 0}
-  fallSpeed: 5
+  fallSpeed: 7
   obstacleMask:
     serializedVersion: 2
     m_Bits: 8
@@ -333,7 +333,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010b80c62a5d9044886fd9cca8b59efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelShift: 0
 --- !u!114 &3129112185958646351
 MonoBehaviour:
   m_ObjectHideFlags: 0

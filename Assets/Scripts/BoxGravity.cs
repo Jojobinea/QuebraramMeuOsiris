@@ -79,7 +79,6 @@ public class BoxGravity : MonoBehaviour
             }
         }
 
-
         // Debug das baseCells
         foreach (var bc in baseCells)
             Debug.Log($"{name} baseCell: {bc}");
@@ -119,4 +118,86 @@ public class BoxGravity : MonoBehaviour
         Vector3 snapped = tilemap.GetCellCenterWorld(cell);
         transform.position = new Vector3(snapped.x, snapped.y, transform.position.z) - pivotOffset;
     }
+
+    private void OnDrawGizmos()
+    {
+        if (tilemap == null) return;
+
+        // --- Cores configuradas ---
+        Color occupiedColor = new Color(0, 1, 0, 0.3f);
+        Color baseColor = new Color(1, 0.5f, 0f, 0.6f);
+        Color checkColor = new Color(1, 0, 0, 0.6f);
+
+        // --- Cálculo dos valores importantes (igual ao TryFall) ---
+
+        // Pivot world
+        Vector3 pivotWorld = transform.TransformPoint(pivotOffset);
+
+        // Direção da gravidade
+        Vector3Int gdir = Vector3Int.RoundToInt(-phaseTransform.up.normalized);
+        gdir.x = -Mathf.Clamp(gdir.x, -1, 1);
+        gdir.y = Mathf.Clamp(gdir.y, -1, 1);
+        gdir.z = 0;
+
+        // Célula de origem
+        Vector3Int originCell = tilemap.WorldToCell(pivotWorld);
+
+        // Signs
+        int signX = (gdir.x != 0) ? -gdir.x : 1;
+        int signY = (gdir.y != 0) ? -gdir.y : 1;
+
+        Vector3Int originShift = new Vector3Int(
+            gdir.x == 1 ? boxSize.x - 1 : 0,
+            gdir.y == 1 ? boxSize.y - 1 : 0,
+            0
+        );
+
+        // --- Células ocupadas pela caixa ---
+        List<Vector3Int> baseCells = new List<Vector3Int>();
+
+        for (int x = 0; x < boxSize.x; x++)
+        {
+            for (int y = 0; y < boxSize.y; y++)
+            {
+                Vector3Int c = originCell + originShift + new Vector3Int(signX * x, signY * y, 0);
+
+                Vector3 cellCenter = tilemap.GetCellCenterWorld(c);
+                Gizmos.color = occupiedColor;
+                Gizmos.DrawCube(cellCenter, tilemap.cellSize * 0.85f);
+
+                bool isBase = false;
+                if (gdir.y != 0 && y == 0) isBase = true;    // gravidade vertical
+                if (gdir.x != 0 && x == 0) isBase = true;    // gravidade horizontal
+
+                if (isBase)
+                {
+                    baseCells.Add(c);
+                    Gizmos.color = baseColor;
+                    Gizmos.DrawCube(cellCenter, tilemap.cellSize * 0.95f);
+                }
+            }
+        }
+
+        // --- Células verificadas além da base ---
+        Gizmos.color = checkColor;
+
+        foreach (var bc in baseCells)
+        {
+            Vector3Int c = bc + gdir;
+            Vector3 cellCenter = tilemap.GetCellCenterWorld(c);
+
+            // highlight cell
+            Gizmos.DrawWireCube(cellCenter, tilemap.cellSize * 0.95f);
+
+            // overlapsphere simulado (é OverlapBox na física real)
+            Gizmos.DrawWireCube(cellCenter, tilemap.cellSize * 0.75f);
+
+            // linha conectando base → check
+            Gizmos.DrawLine(tilemap.GetCellCenterWorld(bc), cellCenter);
+        }
+
+        // --- Marca da célula de origem ---
+        Gizmos.DrawWireCube(tilemap.GetCellCenterWorld(originCell), tilemap.cellSize);
+    }
+
 }

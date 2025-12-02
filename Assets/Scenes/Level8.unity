@@ -2221,7 +2221,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 010b80c62a5d9044886fd9cca8b59efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelShift: 0
 --- !u!1 &546923843
 GameObject:
   m_ObjectHideFlags: 0
@@ -2301,6 +2300,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   totalRotationsSO: {fileID: 11400000, guid: 6234b2e1d530ba746be39672dddf8149, type: 2}
   playerRb: {fileID: 1431804590}
+  shadowPlayerRb: {fileID: 0}
 --- !u!1 &619394800
 GameObject:
   m_ObjectHideFlags: 0
@@ -2413,6 +2413,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 546923844}
     m_Modifications:
+    - target: {fileID: 2155974003979484618, guid: 291d64df6678ede4e8b8a8c830ccb86c, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3129112185958646351, guid: 291d64df6678ede4e8b8a8c830ccb86c, type: 3}
       propertyPath: m_Enabled
       value: 1
